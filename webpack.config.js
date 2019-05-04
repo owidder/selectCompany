@@ -66,7 +66,7 @@ const common = {
 const testPage = {
     ...common,
     entry: {
-        testReactComp: "./src/index.tsx"
+        testPage: "./src/testPage.tsx"
     },
     output: {
         ...common.output,
@@ -75,9 +75,9 @@ const testPage = {
     plugins: [
         ...common.plugins,
         new HtmlWebpackPlugin({
-            filename: "index.html",
+            filename: "testPage.html",
             inject: true,
-            template: "./src/index.html",
+            template: "./src/testPageTemplate.html",
         }),
     ]
 }
