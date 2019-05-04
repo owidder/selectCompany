@@ -3,6 +3,8 @@ import * as ReactDOM from "react-dom";
 
 import {SelectCompany} from "./SelectCompany";
 
+import "antd/dist/antd.css";
+
 const handleSelect = (short: string) => {
     document.getElementById("short").innerHTML = short;
 }
