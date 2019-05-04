@@ -2,19 +2,9 @@ import * as React from "react";
 import * as _ from "lodash";
 import {AutoComplete} from "antd";
 
-export interface SymbolMap {
-    [key: string]: string;
-}
-
 interface SelectSymbolProps {
-    symbols: Symbol[];
-    selected: string;
+    selected?: string;
     onChange: (symbol: string)  => void;
-}
-
-interface SelectSymbolState {
-    data: Array<string>;
-    value?: string;
 }
 
 export interface Symbol {
@@ -22,27 +12,36 @@ export interface Symbol {
     full: string;
 }
 
-const getSymbolMap = async (): Promise<SymbolMap> => {
-    const symbolsResonse = await fetch("./service/symbols");
-    const symbols = await symbolsResonse.json();
+interface SelectSymbolState {
+    symbols: Symbol[];
+    data: string[];
+    value?: string;
+}
+
+const getSymbols = async (): Promise<Symbol[]> => {
+    const symbols = await fetch("./service/symbols").then(resp => resp.json());
     return symbols;
 }
 
-export class SelectSymbol extends React.Component<SelectSymbolProps, SelectSymbolState> {
+export class SelectCompany extends React.Component<SelectSymbolProps, SelectSymbolState> {
 
-    readonly state: SelectSymbolState = {data: []};
+    readonly state: SelectSymbolState = {data: [], symbols: []};
 
     handleSearch(value: string) {
-        const data = _.uniq(this.props.symbols.map(symbol => symbol.full).filter(full => full.toLowerCase().indexOf(value.toLowerCase()) > -1));
+        const data = _.uniq(this.state.symbols.map(symbol => symbol.full).filter(full => full.toLowerCase().indexOf(value.toLowerCase()) > -1));
         this.setState({data, value})
     }
 
     handleSelect(full: string) {
-        const short = this.props.symbols.find(s => s.full == full).short;
+        const short = this.state.symbols.find(s => (s.full == full)).short;
         this.props.onChange(short);
         this.setState({value: full})
     }
 
+    async componentDidMount() {
+        const symbols = await getSymbols();
+        this.setState({symbols});
+    }
 
     render() {
         return <div className="input-field">

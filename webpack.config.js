@@ -1,9 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ZipPlugin = require('zip-webpack-plugin');
 
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
@@ -65,10 +63,10 @@ const common = {
     },
 }
 
-const testReactComp = {
+const testPage = {
     ...common,
     entry: {
-        testReactComp: "./src/testReactComp.tsx"
+        testReactComp: "./src/index.tsx"
     },
     output: {
         ...common.output,
@@ -77,11 +75,11 @@ const testReactComp = {
     plugins: [
         ...common.plugins,
         new HtmlWebpackPlugin({
-            filename: "indexTestReactComp.html",
+            filename: "index.html",
             inject: true,
-            template: "./src/templates/indexTestReactComp.html",
+            template: "./src/index.html",
         }),
     ]
 }
 
-module.exports = [testReactComp]
+module.exports = [testPage]
