@@ -1,8 +1,6 @@
-const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 const absPath = relPath => path.resolve(appDirectory, relPath);
@@ -19,7 +17,6 @@ const common = {
         port: 9000
     },
     module: {
-        strictExportPresence: true,
         rules: [
             {
                 test: /\.(js|jsx|mjs)$/,
@@ -28,30 +25,13 @@ const common = {
                 include: absPath("src"),
             },
             {
-                oneOf: [
-                    {
-                        test: /\.(js|jsx)$/,
-                        include: absPath("src"),
-                        use: {
-                            loader: 'babel-loader',
-                            options: {
-                                presets: ['@babel/preset-env']
-                            }
-                        }                    },
-                    {
-                        test: /\.(ts|tsx)$/,
-                        include: absPath("src"),
-                        use: ['ts-loader'],
-                    },
-                    {
-                        test: /\.less$/,
-                        use: ["style-loader", "css-loader", "less-loader"]
-                    },
-                    {
-                        test: /\.css$/,
-                        use: ["style-loader", "css-loader"]
-                    },
-                ],
+                test: /\.(ts|tsx)$/,
+                include: absPath("src"),
+                use: ['ts-loader'],
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
             },
         ],
     },
@@ -59,7 +39,7 @@ const common = {
         new CopyWebpackPlugin(["public"])
     ],
     resolve: {
-        extensions: [".tsx", ".ts", ".js", ".jsx"]
+        extensions: [".tsx", ".ts", ".js"]
     },
 }
 
