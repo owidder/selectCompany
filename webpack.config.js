@@ -19,12 +19,6 @@ const common = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx|mjs)$/,
-                loader: require.resolve('source-map-loader'),
-                enforce: 'pre',
-                include: absPath("src"),
-            },
-            {
                 test: /\.(ts|tsx)$/,
                 include: absPath("src"),
                 use: ['ts-loader'],
