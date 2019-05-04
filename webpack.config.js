@@ -37,11 +37,14 @@ const common = {
     },
 }
 
+const testPageChunks = ["componentTestPage", "_selectCompanyElement"];
+
 const testPage = {
     ...common,
     entry: {
         testPage: "./src/testPage.tsx",
-        componentTestPage: "./src/SelectCompanyElement.tsx"
+        _selectCompanyElement: "./src/SelectCompanyElement.tsx",
+        componentTestPage: "./src/componentTestPage.ts"
     },
     output: {
         ...common.output,
@@ -57,9 +60,9 @@ const testPage = {
         }),
         new HtmlWebpackPlugin({
             filename: "componentTestPage.html",
-            inject: true,
+            inject: "body",
             template: "./src/componentTestPageTemplate.html",
-            chunks: ["componentTestPage"]
+            chunks: ["_selectCompanyElement", "componentTestPage"],
         }),
     ]
 }
