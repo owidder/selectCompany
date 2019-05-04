@@ -53,11 +53,13 @@ const testPage = {
             filename: "testPage.html",
             inject: true,
             template: "./src/testPageTemplate.html",
+            chunks: ["testPage"]
         }),
         new HtmlWebpackPlugin({
             filename: "componentTestPage.html",
             inject: true,
             template: "./src/componentTestPageTemplate.html",
+            chunks: ["componentTestPage"]
         }),
     ]
 }

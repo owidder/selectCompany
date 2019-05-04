@@ -10,9 +10,10 @@ class SelectCompanyElement extends HTMLElement {
         super();
 
         const div = document.createElement("div");
+        div.setAttribute("id", "container");
         document.body.appendChild(div);
 
-        ReactDOM.render(<SelectCompany onChange={() => {}}/>, div);
+        ReactDOM.render(<SelectCompany onChange={() => {}}/>, document.getElementById("container"));
     }
 }
 
