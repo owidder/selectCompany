@@ -40,7 +40,8 @@ const common = {
 const testPage = {
     ...common,
     entry: {
-        testPage: "./src/testPage.tsx"
+        testPage: "./src/testPage.tsx",
+        componentTestPage: "./src/SelectCompanyElement.tsx"
     },
     output: {
         ...common.output,
@@ -52,6 +53,11 @@ const testPage = {
             filename: "testPage.html",
             inject: true,
             template: "./src/testPageTemplate.html",
+        }),
+        new HtmlWebpackPlugin({
+            filename: "componentTestPage.html",
+            inject: true,
+            template: "./src/componentTestPageTemplate.html",
         }),
     ]
 }
