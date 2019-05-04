@@ -43,7 +43,7 @@ const testPage = {
     ...common,
     entry: {
         testPage: "./src/testPage.tsx",
-        _selectCompanyElement: "./src/SelectCompanyElement.tsx",
+        selectCompanyElement: "./src/SelectCompanyElement.tsx",
         componentTestPage: "./src/componentTestPage.ts"
     },
     output: {
@@ -62,7 +62,8 @@ const testPage = {
             filename: "componentTestPage.html",
             inject: "body",
             template: "./src/componentTestPageTemplate.html",
-            chunks: ["_selectCompanyElement", "componentTestPage"],
+            chunks: ["selectCompanyElement", "componentTestPage"],
+            chunksSortMode: "manual"
         }),
     ]
 }
