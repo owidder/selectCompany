@@ -41,6 +41,11 @@ export class SelectCompany extends React.Component<SelectSymbolProps, SelectSymb
     async componentDidMount() {
         const symbols = await getSymbols();
         this.setState({symbols});
+        if(this.props.selected) {
+            const value = this.state.symbols.find(s => (s.short == this.props.selected)).full;
+            this.setState({value});
+            this.props.onChange(this.props.selected);
+        }
     }
 
     render() {
@@ -49,7 +54,7 @@ export class SelectCompany extends React.Component<SelectSymbolProps, SelectSymb
                 dataSource={this.state.data}
                 onSearch={(text) => this.handleSearch(text)}
                 onSelect={this.handleSelect.bind(this)}
-                value={this.state.value || this.props.selected}
+                value={this.state.value}
                 placeholder="Enter company"/>
         </div>
     }
