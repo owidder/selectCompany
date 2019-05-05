@@ -6,6 +6,8 @@ import {SelectCompany} from "./SelectCompany";
 
 class SelectCompanyElement extends HTMLElement {
 
+    public onChangeCompany: (string) => void;
+
     constructor() {
         super();
 
@@ -13,7 +15,9 @@ class SelectCompanyElement extends HTMLElement {
         div.setAttribute("id", "container");
         document.body.appendChild(div);
 
-        ReactDOM.render(<SelectCompany onChange={() => {}}/>, document.getElementById("container"));
+        ReactDOM.render(<SelectCompany onChange={(short: string) => {
+            this.onChangeCompany && this.onChangeCompany(short)
+        }}/>, document.getElementById("container"));
     }
 }
 
