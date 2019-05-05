@@ -1,6 +1,6 @@
 
 const onChangeCompany = (short: string) => {
-    console.log(short);
+    document.getElementById("text").innerHTML = `Selected company: <b>${short}</b>`;
 }
 
 const selectCompanyElement: any = document.createElement("select-company");
