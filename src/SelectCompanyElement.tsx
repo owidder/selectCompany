@@ -8,13 +8,15 @@ class SelectCompanyElement extends HTMLElement {
 
     public onChangeCompany: (string) => void;
 
+    connectedCallback() {
+        ReactDOM.render(<SelectCompany initialShort={this.getAttribute("initialShort")}
+                                       onChange={(short: string) => {
+                                           this.onChangeCompany && this.onChangeCompany(short)
+                                       }}/>, this);
+    }
+
     constructor() {
         super();
-
-        ReactDOM.render(<SelectCompany initialShort={this.getAttribute("initialShort")}
-            onChange={(short: string) => {
-            this.onChangeCompany && this.onChangeCompany(short)
-        }}/>, this);
     }
 }
 
