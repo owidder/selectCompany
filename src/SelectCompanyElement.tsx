@@ -14,10 +14,6 @@ class SelectCompanyElement extends HTMLElement {
                                            this.onChangeCompany && this.onChangeCompany(short)
                                        }}/>, this);
     }
-
-    constructor() {
-        super();
-    }
 }
 
 customElements.define("select-company", SelectCompanyElement);
