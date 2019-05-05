@@ -11,7 +11,7 @@ class SelectCompanyElement extends HTMLElement {
     constructor() {
         super();
 
-        ReactDOM.render(<SelectCompany selected={this.getAttribute("selected")}
+        ReactDOM.render(<SelectCompany initialShort={this.getAttribute("initialShort")}
             onChange={(short: string) => {
             this.onChangeCompany && this.onChangeCompany(short)
         }}/>, this);

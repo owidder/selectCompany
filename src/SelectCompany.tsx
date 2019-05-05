@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import {AutoComplete} from "antd";
 
 interface SelectSymbolProps {
-    selected?: string;
+    initialShort?: string;
     onChange: (symbol: string)  => void;
 }
 
@@ -41,10 +41,10 @@ export class SelectCompany extends React.Component<SelectSymbolProps, SelectSymb
     async componentDidMount() {
         const symbols = await getSymbols();
         this.setState({symbols});
-        if(this.props.selected) {
-            const value = this.state.symbols.find(s => (s.short == this.props.selected)).full;
+        if(this.props.initialShort) {
+            const value = this.state.symbols.find(s => (s.short == this.props.initialShort)).full;
             this.setState({value});
-            this.props.onChange(this.props.selected);
+            this.props.onChange(this.props.initialShort);
         }
     }
 

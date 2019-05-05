@@ -9,7 +9,7 @@ const onChangeCompany = (short: string) => {
 
 const selectCompanyElement: any = document.createElement("select-company");
 selectCompanyElement.onChangeCompany = onChangeCompany;
-selectCompanyElement.setAttribute("selected", params.short);
+selectCompanyElement.setAttribute("initialShort", params.short);
 
 const containerElement = document.getElementById("container");
 containerElement.appendChild(selectCompanyElement);
