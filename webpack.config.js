@@ -37,8 +37,6 @@ const common = {
     },
 }
 
-const testPageChunks = ["componentTestPage", "_selectCompanyElement"];
-
 const testPage = {
     ...common,
     entry: {
