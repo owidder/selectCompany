@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 const absPath = relPath => path.resolve(appDirectory, relPath);
+const packageJson = require("./package.json");
 
 const common = {
     mode: process.env.NODE_ENV,
@@ -37,7 +38,7 @@ const common = {
     },
 }
 
-const testPage = {
+const testPages = {
     ...common,
     entry: {
         testPage: "./src/testPage.tsx",
@@ -66,4 +67,15 @@ const testPage = {
     ]
 }
 
-module.exports = [testPage]
+const customElementsDist = {
+    ...common,
+    entry: {
+        selectCompanyElement: "./src/SelectCompanyElement.tsx",
+    },
+    output: {
+        ...common.output,
+        filename: `dist/js/[name].${packageJson.version}.js`,
+    },
+}
+
+module.exports = [testPages, customElementsDist]
